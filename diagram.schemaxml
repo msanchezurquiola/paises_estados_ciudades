@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_0900_ai_ci">forms</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="countries" view="colnames">
+<left>89</left>
+<top>116</top>
+<width>107</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `countries` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci</sql_create_table>
+</table>
+<table name="states" view="colnames">
+<left>256</left>
+<top>116</top>
+<width>106</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `states` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_country` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_states_countries` (`id_country`),
+  CONSTRAINT `fk_states_countries` FOREIGN KEY (`id_country`) REFERENCES `countries` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2204 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci</sql_create_table>
+</table>
+<table name="cities" view="colnames">
+<left>436</left>
+<top>117</top>
+<width>109</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `cities` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_state` int NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_cities_states` (`id_state`),
+  CONSTRAINT `fk_cities_states` FOREIGN KEY (`id_state`) REFERENCES `states` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=790315 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
